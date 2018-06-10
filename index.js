@@ -5,9 +5,12 @@ const _ = require('lodash');
 const baseUrl = 'http://www.dssclub.com.ua/fifa18/';
 let GROUPS = {};
 
+setInterval(() => {
+    GROUPS = {};
+}, 30 * 60 * 1000);
+
 app.get('/groups', async (req, res) => {
     if (!_.isEmpty(GROUPS)) {
-        console.log(1);
         return res.send(GROUPS);
     }
     const countriesAray = await rp(`${baseUrl}groupup.php`, {json: true});
